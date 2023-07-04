@@ -46,7 +46,7 @@
 
 
         - name: Update apt and install required system packages
-            apt:
+          apt:
               pkg:
               - curl
               - fail2ban
@@ -54,7 +54,7 @@
               - mc
               - tree
               state: latest
-            update_cache: true
+          update_cache: true
 
         - name: Set timezone to Kyiv
           community.general.timezone:
@@ -78,13 +78,13 @@
             - /home/data:/data
             hostname: "{{ hostvars[inventory_hostname]['serv_hostname'] }}"
             env:
-            TZ=Europe/Kiev
+              TZ=Europe/Kiev
             tty: true
             memory: "{{ hostvars[inventory_hostname]['mem_limit'] }}"
 
 
         - name: Delete packages
-            apt:
+          apt:
             name: snapd
             state: absent
 

@@ -4,15 +4,15 @@
 
   tasks:
         - name: Copy file with backup script
-        copy:
-        src: /root/mail-ansible/scripts/bkp.sh
-        dest: /root/bkp.sh
-        mode: '0740'
+          copy:
+            src: /root/mail-ansible/scripts/bkp.sh
+            dest: /root/bkp.sh
+            mode: '0740'
 
 
         - name: Add cron job to run rsyncbackup daily at 1:00 am
-        cron:
-        name: "Run rsyncbackup daily at 1:00 am"
-        minute: 0
-        hour: 1
-        job: "/root/bkp.sh {{ hostvars[inventory_hostname]['bkpdir'] }} >> /var/log/rsyncbackup.log 2>&1"
+          cron:
+            name: "Run rsyncbackup daily at 1:00 am"
+            minute: 0
+            hour: 1
+          job: "/root/bkp.sh {{ hostvars[inventory_hostname]['bkpdir'] }} >> /var/log/rsyncbackup.log 2>&1"
