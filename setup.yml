@@ -9,7 +9,7 @@
           apt:
               name: aptitude
               state: latest
-              update_cache: true
+          update_cache: true
 
 
   #  - name: Setup passwordless sudo
