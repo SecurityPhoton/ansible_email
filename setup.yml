@@ -1,0 +1,95 @@
+- hosts: all
+  become: true
+  vars:
+        created_username: vic
+
+
+  tasks:
+        - name: Install aptitude
+        apt:
+        name: aptitude
+        state: latest
+        update_cache: true
+
+
+  #  - name: Setup passwordless sudo
+  #     lineinfile:
+  #     path: /etc/sudoers
+  #     state: present
+  #     regexp: '^%sudo'
+  #     line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+  #     validate: '/usr/sbin/visudo -cf %s'
+
+
+        # - name: Create a new regular user with sudo privileges
+        #   user:
+        #       name: "{{ created_username }}"
+        #       state: present
+        #       groups: sudo
+        #       append: true
+        #       create_home: true
+
+
+        # - name: Set authorized key for remote user
+        #   ansible.posix.authorized_key:
+        #       user: "{{ created_username }}"
+        #       state: present
+        #       key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+
+
+        # - name: Disable password authentication for root
+        #   lineinfile:
+        #       path: /etc/ssh/sshd_config
+        #       state: present
+        #       regexp: '^#?PermitRootLogin'
+        #       line: 'PermitRootLogin prohibit-password'
+
+
+        - name: Update apt and install required system packages
+        apt:
+        pkg:
+        - curl
+        - fail2ban
+        - docker.io
+        - mc
+        - tree
+        state: latest
+        update_cache: true
+
+        - name: Set timezone to Kyiv
+        community.general.timezone:
+        name: Europe/Kyiv
+
+
+        - name: Create a directory for mail if it does not exist
+        ansible.builtin.file:
+        path: "{{ hostvars[inventory_hostname]['path_for_data'] }}"
+        state: directory
+        mode: '0755'
+
+
+        - name: Create mail poste.io container and connect to network
+        community.docker.docker_container:
+        name: mailserver
+        image: "{{ hostvars[inventory_hostname]['image_with_tag'] }}"
+        networks:
+        - name: host
+        volumes:
+        - /home/data:/data
+        hostname: "{{ hostvars[inventory_hostname]['serv_hostname'] }}"
+        env:
+        TZ=Europe/Kiev
+        tty: true
+        memory: "{{ hostvars[inventory_hostname]['mem_limit'] }}"
+
+
+        - name: Delete packages
+        apt:
+        name: snapd
+        state: absent
+
+
+        - name: Copy file with f2b script
+        copy:
+        src: /root/mail-ansible/scripts/f2bconf.sh
+        dest: /root/f2bconf.sh
