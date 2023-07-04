@@ -1,0 +1,2 @@
+mail-srv-1 ansible_host=123.45.6.7
+mail-srv-2 ansible_host=123.45.67.89
