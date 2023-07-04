@@ -32,9 +32,9 @@ ansible-playbook -i hosts setup.yml
 
 ## Notes :notebook:
 
-    The become: true statement at the top of the playbook enables privilege escalation, allowing Ansible to execute tasks with sudo privileges.
+The become: true statement at the top of the playbook enables privilege escalation, allowing Ansible to execute tasks with sudo privileges.
 
-    The commented out tasks can be uncommented and customized to your needs, such as creating a new user with sudo privileges, setting up passwordless sudo, adding an authorized key for the remote user, and disabling password authentication for root.
+   The commented out tasks can be uncommented and customized to your needs, such as creating a new user with sudo privileges, setting up passwordless sudo, adding an authorized key for the remote user, and disabling password authentication for root.
 
 ## Configure backup
 
