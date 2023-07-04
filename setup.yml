@@ -1,16 +1,10 @@
 - hosts: all
   become: true
   vars:
-        created_username: vic
+    created_username: vic
 
 
   tasks:
-    - name: Install aptitude
-      apt:
-         name: aptitude
-         state: latest
-      update_cache: true
-
 
   #  - name: Setup passwordless sudo
   #     lineinfile:

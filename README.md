@@ -23,7 +23,6 @@ ansible-playbook -i hosts setup.yml
 ```
 ## Playbook tasks :man_mechanic:
 
-   - Install aptitude package manager.
    - Install required system packages including curl, fail2ban, docker.io, mc, and tree.
    - Set the timezone to Kyiv.
    - Create a directory for mail data.
