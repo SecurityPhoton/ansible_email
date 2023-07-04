@@ -9,7 +9,6 @@
         dest: /root/bkp.sh
         mode: '0740'
 
-
     - name: Add cron job to run rsyncbackup daily at 1:00 am
       cron:
         name: "Run rsyncbackup daily at 1:00 am"
