@@ -68,13 +68,13 @@
         image: "{{ hostvars[inventory_hostname]['image_with_tag'] }}"
         networks:
           - name: host
-            volumes:
-            - /home/data:/data
-            hostname: "{{ hostvars[inventory_hostname]['serv_hostname'] }}"
-            env:
-              TZ=Europe/Kiev
-            tty: true
-            memory: "{{ hostvars[inventory_hostname]['mem_limit'] }}"
+        volumes:
+          - /home/data:/data
+        hostname: "{{ hostvars[inventory_hostname]['serv_hostname'] }}"
+        env:
+          TZ=Europe/Kiev
+        tty: true
+        memory: "{{ hostvars[inventory_hostname]['mem_limit'] }}"
 
 
     - name: Delete packages
@@ -85,5 +85,5 @@
 
     - name: Copy file with f2b script
       copy:
-        src: /root/mail-ansible/scripts/f2bconf.sh
+        src: ./scripts/f2bconf.sh
         dest: /root/f2bconf.sh
