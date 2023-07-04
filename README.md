@@ -1,12 +1,12 @@
 # Ansible Playbook for Mail Server Setup
 
 This playbook installs and configures a mail server on a remote host. It installs required packages and sets up a Docker container running a poste.io mail server.
-## Prerequisites
+## Prerequisites :writing_hand:
 
     A remote host with a user account that has sudo privileges or public key deployed
     Ansible installed on your local machine
 
-## Usage
+## Usage :mechanical_arm:
 
     Update the hosts file with the IP address or hostname of your remote host.
 
@@ -21,7 +21,7 @@ This playbook installs and configures a mail server on a remote host. It install
 ```
 ansible-playbook -i hosts setup.yml
 ```
-## Playbook tasks
+## Playbook tasks :man_mechanic:
 
    - Install aptitude package manager.
    - Install required system packages including curl, fail2ban, docker.io, mc, and tree.
@@ -31,7 +31,7 @@ ansible-playbook -i hosts setup.yml
    - Delete the snapd package.
    - Copy the fail2ban configuration script f2bconf.sh to the remote host.
 
-## Notes
+## Notes :notebook:
 
     The become: true statement at the top of the playbook enables privilege escalation, allowing Ansible to execute tasks with sudo privileges.
 
