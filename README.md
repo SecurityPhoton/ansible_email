@@ -1,2 +1,2 @@
-# ansible_email
+# ansible email server provision
 Mail servers provision with ansible
