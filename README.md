@@ -36,3 +36,10 @@ ansible-playbook -i hosts setup.yml
 
     The commented out tasks can be uncommented and customized to your needs, such as creating a new user with sudo privileges, setting up passwordless sudo, adding an authorized key for the remote user, and disabling password authentication for root.
 
+## Configure backup
+
+Use backup-config.yml playbook to set rsync cron script to the prepeared destination to copy /data folder. It copies the file for backup and creates a cron task. The cron task runs (every day at 1.00 AM) the script and passes the appropriate parameters to it (specific for each server) and logs the script's operation in the local file /var/log/rsyncbackup.log on the servers.
+Use to start:
+```    
+ansible-playbook -i hosts backup-config.yml
+```
