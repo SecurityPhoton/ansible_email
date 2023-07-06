@@ -1,23 +1,23 @@
 # Ansible Playbook for Mail Server Setup
 
-This playbook installs and configures a mail server on a remote host. It installs required packages and sets up a Docker container running a poste.io mail server.
+This playbook installs and configures a mail server on a remote host. It installs required packages and sets up a Docker container running a [https://poste.io/](poste.io) mail server.
 ## Prerequisites :writing_hand:
 
-    A remote host with a user account that has sudo privileges or public key deployed
-    Ansible installed on your local machine
+A remote host with a user account that has sudo privileges or public key deployed
+Ansible installed on your local machine
 
 ## Usage :mechanical_arm:
 
-    Update the hosts file with the IP address or hostname of your remote host.
+   Update the hosts file with the IP address or hostname of your remote host.
 
-    Update the variables in the host_vars files to match your desired configuration. The following variables must be defined:
+   Update the variables in the host_vars files to match your desired configuration. The following variables must be defined:
  
        - path_for_data: the path to the directory where mail data will be stored
        - image_with_tag: the Docker image to use for the mail server
        - serv_hostname: the hostname of the mail server to run docker with
        - mem_limit: the amount of memory to allocate to the Docker container
 
-    Run the playbook with the following command:
+   Run the playbook with the following command:
 ```
 ansible-playbook -i hosts setup.yml
 ```
