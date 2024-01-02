@@ -73,6 +73,7 @@
         hostname: "{{ hostvars[inventory_hostname]['serv_hostname'] }}"
         env:
           TZ=Europe/Kiev
+          DISABLE_CLAMAV=TRUE
         tty: true
         memory: "{{ hostvars[inventory_hostname]['mem_limit'] }}"
 
