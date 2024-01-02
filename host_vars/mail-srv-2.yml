@@ -1,5 +1,5 @@
 bkpdir=/home/bkpuser/mysite2
 serv_hostname=mail.mysite2.com
 path_for_data=/home/data
-image_with_tag=analogic/poste.io:2.3.12
+image_with_tag=analogic/poste.io:2.3.18
 mem_limit=1.7G
